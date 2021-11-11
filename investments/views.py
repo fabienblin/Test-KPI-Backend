@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from rest_framework import viewsets
+from investments.serializers import InvestmentSerializer
+from investments.models import Investment
 
-# Create your views here.
+class InvestmentViewSet(viewsets.ModelViewSet):
+	queryset = Investment.objects.all()
+	serializer_class = InvestmentSerializer
