@@ -6,6 +6,7 @@ class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
 	notification_du_marche = serializers.DateField("%Y-%m-%d")
 	cao_attribution = serializers.DateField("%Y-%m-%d")
 	annee_d_individualisation = serializers.DateField("%Y")
+		
 	class Meta:
 		model = Investment
 		fields = "__all__"
