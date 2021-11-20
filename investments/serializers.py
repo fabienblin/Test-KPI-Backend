@@ -2,7 +2,7 @@ from rest_framework import serializers
 from investments.models import Investment
 
 class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
-	id = serializers.IntegerField()
+	id = serializers.IntegerField(required=False)
 	annee_de_livraison = serializers.DateField("%Y")
 	notification_du_marche = serializers.DateField("%Y-%m-%d")
 	cao_attribution = serializers.DateField("%Y-%m-%d")
@@ -11,3 +11,10 @@ class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Investment
 		fields = "__all__"
+
+class InvestmentListSerializer(serializers.HyperlinkedModelSerializer):
+	id = serializers.IntegerField()
+
+	class Meta:
+		model = Investment
+		fields = ["id", "titreoperation"]
