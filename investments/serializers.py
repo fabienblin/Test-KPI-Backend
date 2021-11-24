@@ -26,10 +26,3 @@ class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Investment
 		fields = "__all__"
-
-class InvestmentListSerializer(serializers.HyperlinkedModelSerializer):
-	id = serializers.IntegerField()
-
-	class Meta:
-		model = Investment
-		fields = ["id", "titreoperation"]

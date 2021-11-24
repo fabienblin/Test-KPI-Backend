@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework import viewsets
+from rest_framework import views, viewsets
 from investments.serializers import *
 from investments.models import *
 
 class InvestmentViewSet(viewsets.ModelViewSet):
 	queryset = Investment.objects.all()
-	serializer_class = InvestmentListSerializer
+	serializer_class = InvestmentSerializer
 
 class InvestmentFilterViewSet(viewsets.ReadOnlyModelViewSet):
-	serializer_class = InvestmentListSerializer
+	serializer_class = InvestmentSerializer
 
 	def get_queryset(self):
 		filterBy = self.kwargs["filterBy"]

@@ -7,5 +7,5 @@ router.register(r"", InvestmentViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
-	path("filter/<filterBy>/<filterVal>", InvestmentFilterViewSet.as_view({'get': 'list'}))
+	path("filter/<filterBy>/<filterVal>/", InvestmentFilterViewSet.as_view({'get': 'list'}))
 ]
