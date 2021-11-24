@@ -2,7 +2,7 @@ from rest_framework import serializers
 from investments.models import Investment
 
 class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
-	id = serializers.IntegerField(required=False)
+	id = serializers.ReadOnlyField(required=False)
 	titreoperation = serializers.CharField()
 	entreprise = serializers.CharField(required=False, allow_blank=True)
 	annee_de_livraison = serializers.DateField(required=False, format="%Y")
