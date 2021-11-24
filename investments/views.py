@@ -1,16 +1,23 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.http import HttpResponse
 from rest_framework import viewsets
 from investments.serializers import *
 from investments.models import *
 
 class InvestmentViewSet(viewsets.ModelViewSet):
 	queryset = Investment.objects.all()
-	serializer_class = InvestmentSerializer
+	serializer_class = InvestmentListSerializer
 
-class InvestmentListViewSet(viewsets.ModelViewSet):
+class InvestmentFilterViewSet(viewsets.ReadOnlyModelViewSet):
 	serializer_class = InvestmentListSerializer
 
 	def get_queryset(self):
-		print("====ici====")
-		id = self.kwargs["id"]
-		return Investment.objects.filter(pk=id)
+		filterBy = self.kwargs["filterBy"]
+		filterVal = self.kwargs["filterVal"]
+
+		if (filterBy == "ville"):
+			return Investment.objects.filter(ville=filterVal)
+		elif (filterBy == "etat_d_avancement"):
+			return Investment.objects.filter(etat_d_avancement=filterVal)
+		else:
+			HttpResponse('Bad Request', status=400)

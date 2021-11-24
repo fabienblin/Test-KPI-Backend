@@ -4,8 +4,8 @@ from investments.views import *
 
 router = routers.DefaultRouter()
 router.register(r"", InvestmentViewSet)
-router.register(r"<int:id>", InvestmentListViewSet, basename="investmentlist")
 
 urlpatterns = [
     path("", include(router.urls)),
+	path("filter/<filterBy>/<filterVal>", InvestmentFilterViewSet.as_view({'get': 'list'}))
 ]
